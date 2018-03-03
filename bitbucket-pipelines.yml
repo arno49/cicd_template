@@ -1,0 +1,43 @@
+image: java:8
+# image: node:4.6.0
+# image: python:3.5.1
+
+  
+pipelines:
+
+  default:
+  # This pipeline is run for all branches that don't match
+  # any other pipeline configuration and have
+  # the bitbucket-pipelines.yml file in the root directory.
+  # Feature branch in my branching strategy.
+  # feature -> develop -> rc -> master, tag on master=
+
+    - step:
+        script:
+          - bash devops/qg/qg1.sh
+
+  branches:
+
+    develop:
+      - step:
+          script:
+            - bash devops/qg/qg2.sh
+            - bash devops/release/dev.sh
+
+    rc:
+      - step:
+          script:
+            - bash devops/qg/qg3.sh
+            - bash devops/release/qa.sh
+
+    master:
+      - step:
+          script:
+            - bash devops/qg/qg4.sh
+            - bash devops/release/preprod.sh
+
+  tags:
+    release-*:
+      - step:
+          script:
+            - bash devops/release/prod.sh
