@@ -7,7 +7,7 @@
 ├── bitbucket-pipelines.yml   # ci / cd triggers for bitbucket
 ├── devops
 │   ├── qg          # quality gate interfaces and implementation
-│   │   ├── REAME.md
+│   │   ├── README.md
 │   │   ├── qg-samples
 │   │   │   ├── node-lint.sh
 │   │   │   ├── python-codestyle.sh
